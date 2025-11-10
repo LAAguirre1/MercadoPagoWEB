@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mercado Pago App</title>
+
+    @* *** CARGA DIRECTA DE CSS (SIN BUNDLING) *** *@
+    @* Carga primero Bootstrap para que Site.css pueda sobrescribir estilos *@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    @* *** Incluir Font Awesome (Íconos) *** *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMD/CDQ65zR...[EL RESTO DE INTEGRITY]..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    @* Navbar con Enlaces Personalizados y Color (BG-Primary depende de tu CSS) *@
+    <div class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <div class="container">
+
+            @* 1. Marca de la Aplicación (navbar-brand) *@
+            @Html.ActionLink("Mercado Pago", "Index", "Billetera", new { area = "" }, new { @class = "navbar-brand" })
+
+            @* 2. Botón Hamburguesa de Bootstrap 5 (Requiere data-bs-toggle y data-bs-target) *@
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            @* 3. El colapsable ahora usa id="navbarNav" *@
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li>@Html.ActionLink("Mi Billetera", "Index", "Billetera", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Transacciones", "Index", "Transaccion", null, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Usuarios (Admin)", "Index", "Usuario", null, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content mt-5">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Aplicación Distribuida</p>
+        </footer>
+    </div>
+
+    @* *** CARGA DIRECTA DE SCRIPTS (IMPORTANTE EL ORDEN) *** *@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

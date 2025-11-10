@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0e26fd11e12143b78043becb67c4242e" Name="Diagram1">
+        <EntityTypeShape EntityType="MercadoPagoDBModel.CuentaBancaria" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MercadoPagoDBModel.CuentaDigital" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MercadoPagoDBModel.MetodoPago" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MercadoPagoDBModel.MovimientoCuenta" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MercadoPagoDBModel.Transaccion" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MercadoPagoDBModel.Usuario" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MercadoPagoDBModel.Vista_SaldosContacto" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MercadoPagoDBModel.Vista_UsuariosVerificados" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MercadoPagoDBModel.FK__CuentaBan__id_us__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="MercadoPagoDBModel.FK__CuentaDig__id_us__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="MercadoPagoDBModel.FK__Movimient__id_cu__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="MercadoPagoDBModel.FK__Movimient__id_cu__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="MercadoPagoDBModel.FK__MetodoPag__id_us__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="MercadoPagoDBModel.FK__Movimient__id_me__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="MercadoPagoDBModel.FK__Movimient__id_tr__4F7CD00D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

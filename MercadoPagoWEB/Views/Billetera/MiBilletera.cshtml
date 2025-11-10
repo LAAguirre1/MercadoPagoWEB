@@ -1,0 +1,141 @@
+﻿@model MercadoPagoWEB.Models.BilleteraViewModel
+
+@{
+    ViewBag.Title = "MiBilletera";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Hola, @Model.NombreCompleto</h2>
+        <span class="badge @(Model.EstadoKYC == "Verificado" ? "bg-success" : "bg-warning") p-2">
+            @(Model.EstadoKYC == "Verificado" ? "✅ Cuenta Verificada" : "⚠️ Verificación Pendiente")
+        </span>
+    </div>
+    <hr />
+
+    @* --- Mostar mensajes de Éxito/Error --- *@
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mensaje"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    @* Sección 1 *@
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card bg-primary text-white shadow-lg border-0" style="border-radius: 1rem;">
+                <div class="card-body">
+                    <h5 class="card-title opacity-75">Saldo Disponible</h5>
+                    <h1 class="card-text fw-bold">$ @Model.SaldoActual.ToString("N2")</h1>
+                    <p class="card-text opacity-75">@Model.Moneda</p>
+                    <a href="@Url.Action("IngresarDinero", "Pagos")" class="btn btn-warning mt-3">
+                        + Ingresar Dinero
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title border-bottom pb-2">Datos de tu Cuenta</h5>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="mb-0 fw-bold">Alias:</p>
+                            <p class="text-secondary">@Model.CVU_Alias</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0 fw-bold">CVU:</p>
+                            <p class="text-secondary">@Model.CVU</p>
+                        </div>
+                    </div>
+
+                    <h5 class="card-title border-bottom pb-2 mt-4">Acciones</h5>
+                    <div class="d-grid gap-2">
+                        <a href="@Url.Action("Crear", "Transferencia")" class="btn btn-outline-success">
+                            Enviar Dinero 📤
+                        </a>
+                        <a href="@Url.Action("Listado", "Transacciones")" class="btn btn-outline-secondary">
+                            Ver Actividad 📜
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4>Métodos de Pago Vinculados</h4>
+            @foreach (var metodo in Model.MetodosPago)
+            {
+                <div class="alert alert-secondary d-flex justify-content-between align-items-center">
+                    <span>
+                        @if (metodo.TipoMetodo.Contains("Crédito"))
+                        {
+                            <i class="fas fa-credit-card me-2"></i> // Ícono de Font Awesome (si está incluido)
+                        }
+                        else
+                        {
+                            <i class="fas fa-wallet me-2"></i>
+                        }
+                        @metodo.TipoMetodo: **** **** **** @metodo.Ultimos4Digitos
+                    </span>
+                    <small>@metodo.BancoEmisor</small>
+                </div>
+            }
+        </div>
+    </div>
+
+    @* --- Sección 2: Verificación KYC --- *@
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h4>Estado de verificación KYC</h4>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <p class="fw-bold">Estado actual:</p>
+                    <span class="badge @Model.EstadoKYC == " Verificado"? "bg-succes" : "bg-warning" ) p-2 mb-3">
+                        @(Model.EstadoKYC == "Verificado" ? "✅ Cuenta Verificada" : "⚠️ Verificación Requerida")
+                    </span>
+
+                    @if (Model.EstadoKYC != "Verificado")
+                    {
+                        // SOLO MOSTRAMOS EL FORMULARIO SI NO ESTÁ VERIFICADO
+                        <p>Para completar tu verificación (según RENAPER), ingresa tu CUIL:</p>
+
+                        @* ----------------------------------------------------- *@
+                        @* --- El Formulario que Llama a la Lógica Distribuida --- *@
+                        @* ----------------------------------------------------- *@
+                        using (Html.BeginForm("IniciarVerificacionKYC", "Billetera", FormMethod.Post, new { @class = "form-inline" }))
+                        {
+                            // Campo oculto para enviar el ID del usuario al controlador
+                            @Html.Hidden("id_usuario", Model.IdUsuario)
+
+                            <div class="input-group mb-3">
+                                <input type="text" name="cuil" class="form-control"
+                                       placeholder="Ej: 20-30123456-7" required
+                                       pattern="\d{2}-\d{8}-\d{1}"
+                                       title="El formato debe ser 20-12345678-9" />
+
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fas fa-search"></i> Verificar con RENAPER
+                                </button>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-success">¡Tu identidad ha sido confirmada. Ya puedes usar todas las funciones de la billetera!</p>
+                    }
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+
+</div>
