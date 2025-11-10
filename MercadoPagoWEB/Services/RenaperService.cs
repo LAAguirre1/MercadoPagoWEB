@@ -36,6 +36,7 @@ public class RenaperService
     /// Intenta obtener la clave de la caché o la solicita al servicio RENAPER si no existe.
     /// Esta función maneja el error 500 forzado por la API al solicitar la clave repetidas veces.
     /// </summary>
+    /// <returns>Clave API como string o null si falla.</returns>
     public async Task<string> GetApiKeyAsync()
     {
         // 1. INTENTAR OBTENER DEL WEB.CONFIG (Persistencia Larga)
@@ -48,6 +49,7 @@ public class RenaperService
 
         // 2. Si no existe en Web.config, realizar la solicitud POST (Solo la primera vez)
         string mail = ConfigurationManager.AppSettings["RenaperRequestMail"];
+        // Convertimos el string de Web.config a entero
         if (!int.TryParse(ConfigurationManager.AppSettings["RenaperRequestLimit"], out int limit))
         {
             limit = 100;
@@ -162,26 +164,26 @@ public class RenaperService
                 // Realizar la llamada GET
                 HttpResponseMessage response = await _client.SendAsync(requestMessage);
 
-                if (response.IsSuccessStatusCode)
-                {
+            if (response.IsSuccessStatusCode)
+            {
                     // Código 200 OK: CUIL encontrado y válido.
-                    return true;
-                }
+                return true;
+            }
                 else if (response.StatusCode == System.Net.HttpStatusCode.NotFound ||
                          response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                {
+            {
                     // 404/400: No encontrado o formato de CUIL incorrecto. No verificado.
                     string errorDetail = await response.Content.ReadAsStringAsync();
                     Console.WriteLine($"Verificación fallida para CUIL {cuil}. Código: {response.StatusCode}. Detalle: {errorDetail}");
-                    return false;
-                }
-                else
-                {
+                return false;
+            }
+            else
+            {
                     // Otros errores (Ej: 401 Unauthorized por clave vencida/mala, 500)
                     Console.WriteLine($"Error de servicio RENAPER. Código: {response.StatusCode}.");
-                    return false;
-                }
+                return false;
             }
+        }
         }
         catch (Exception ex)
         {

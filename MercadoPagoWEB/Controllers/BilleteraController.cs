@@ -57,6 +57,8 @@ namespace MercadoPagoWEB.Controllers
         {
             string apiKey = await _renaperService.GetApiKeyAsync(); // <-- Usando el campo de clase
 
+            string apiKey = await renaperService.GetApiKeyAsync();
+
             if (string.IsNullOrEmpty(apiKey))
             {
                 ViewBag.Resultado = "❌ ERROR AL OBTENER LA CLAVE API.";
@@ -67,6 +69,7 @@ namespace MercadoPagoWEB.Controllers
                 ViewBag.Resultado = "✅ CLAVE API OBTENIDA CON ÉXITO.";
                 ViewBag.Detalle = $"Clave API: **{apiKey}** (Longitud: {apiKey.Length})";
             }
+            // Usaremos la vista de Index de Billetera para mostrar el resultado o una vista simple
             return View("ResultadoPrueba");
         }
 
