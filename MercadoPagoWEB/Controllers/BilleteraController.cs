@@ -57,7 +57,6 @@ namespace MercadoPagoWEB.Controllers
         {
             string apiKey = await _renaperService.GetApiKeyAsync(); // <-- Usando el campo de clase
 
-            string apiKey = await renaperService.GetApiKeyAsync();
 
             if (string.IsNullOrEmpty(apiKey))
             {
