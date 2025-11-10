@@ -1,0 +1,19 @@
+﻿@* /Views/Billetera/ResultadoPrueba.cshtml *@
+
+@{
+    ViewBag.Title = "Prueba de Servicio RENAPER";
+}
+
+<div class="container mt-5">
+    <h2>Prueba de Conexión Distribuida: Obtención de Clave API</h2>
+    <hr />
+
+    <div class="alert @(ViewBag.Resultado.Contains("✅") ? "alert-success" : "alert-danger")" role="alert">
+        <h4 class="alert-heading">@ViewBag.Resultado</h4>
+        <p>@Html.Raw(ViewBag.Detalle)</p>
+    </div>
+
+    <p class="mt-4">
+        <a href="@Url.Action("Index", "Billetera")" class="btn btn-secondary">Volver al Dashboard</a>
+    </p>
+</div>

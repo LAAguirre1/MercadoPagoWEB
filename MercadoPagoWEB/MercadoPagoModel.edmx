@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MercadoPagoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CuentaBancaria">
+          <Key>
+            <PropertyRef Name="id_cuenta_bancaria" />
+          </Key>
+          <Property Name="id_cuenta_bancaria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="cbu" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombre_banco" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CuentaDigital">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="cvu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="alias" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="saldo_actual" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="moneda" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="MetodoPago">
+          <Key>
+            <PropertyRef Name="id_metodo" />
+          </Key>
+          <Property Name="id_metodo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="tipo_metodo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="token_tarjeta" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ultimos_4_digitos" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="banco_emisor" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="MovimientoCuenta">
+          <Key>
+            <PropertyRef Name="id_movimiento" />
+          </Key>
+          <Property Name="id_movimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_transaccion" Type="int" Nullable="false" />
+          <Property Name="id_cuenta_origen" Type="int" />
+          <Property Name="id_cuenta_destino" Type="int" />
+          <Property Name="id_metodo_pago_vinculado" Type="int" />
+          <Property Name="monto_afectado" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaccion">
+          <Key>
+            <PropertyRef Name="id_transaccion" />
+          </Key>
+          <Property Name="id_transaccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="monto" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="fecha_hora" Type="datetime" />
+          <Property Name="tipo_transaccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="tarifa_comision" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="referencia_externa" Type="varchar" MaxLength="100" />
+          <Property Name="descripcion" Type="text" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="password_hash" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" />
+          <Property Name="estado_kyc" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'C:\UTN\DISTRIBUIDAS\MERCADOPAGOWEB\MERCADOPAGOWEB\DB\MERCADOPAGODB.MDF.dbo.Vista_SaldosContacto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Vista_SaldosContacto">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellido" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="cvu" />
+          </Key>
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="cvu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="saldo_actual" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="moneda" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'C:\UTN\DISTRIBUIDAS\MERCADOPAGOWEB\MERCADOPAGOWEB\DB\MERCADOPAGODB.MDF.dbo.Vista_UsuariosVerificados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Vista_UsuariosVerificados">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellido" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="dni" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__CuentaBan__id_us__48CFD27E">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CuentaBancaria" Type="Self.CuentaBancaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="CuentaBancaria">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaDig__id_us__412EB0B6">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CuentaDigital" Type="Self.CuentaDigital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="CuentaDigital">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MetodoPag__id_us__44FF419A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="MetodoPago" Type="Self.MetodoPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="MetodoPago">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_cu__5070F446">
+          <End Role="CuentaDigital" Type="Self.CuentaDigital" Multiplicity="0..1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaDigital">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_cuenta_origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_cu__5165187F">
+          <End Role="CuentaDigital" Type="Self.CuentaDigital" Multiplicity="0..1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaDigital">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_cuenta_destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_me__52593CB8">
+          <End Role="MetodoPago" Type="Self.MetodoPago" Multiplicity="0..1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodoPago">
+              <PropertyRef Name="id_metodo" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_metodo_pago_vinculado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_tr__4F7CD00D">
+          <End Role="Transaccion" Type="Self.Transaccion" Multiplicity="1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaccion">
+              <PropertyRef Name="id_transaccion" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_transaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_ActualizarEstadoKYC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_usuario" Type="int" Mode="In" />
+          <Parameter Name="nuevo_estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_RealizarTransferencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_origen" Type="int" Mode="In" />
+          <Parameter Name="id_destino" Type="int" Mode="In" />
+          <Parameter Name="monto" Type="decimal" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MercadoPagoDBModelStoreContainer">
+          <EntitySet Name="CuentaBancaria" EntityType="Self.CuentaBancaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentaDigital" EntityType="Self.CuentaDigital" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetodoPago" EntityType="Self.MetodoPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovimientoCuenta" EntityType="Self.MovimientoCuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaccion" EntityType="Self.Transaccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vista_SaldosContacto" EntityType="Self.Vista_SaldosContacto" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vista_SaldosContacto].[id_usuario] AS [id_usuario], 
+    [Vista_SaldosContacto].[nombre] AS [nombre], 
+    [Vista_SaldosContacto].[apellido] AS [apellido], 
+    [Vista_SaldosContacto].[email] AS [email], 
+    [Vista_SaldosContacto].[cvu] AS [cvu], 
+    [Vista_SaldosContacto].[saldo_actual] AS [saldo_actual], 
+    [Vista_SaldosContacto].[moneda] AS [moneda]
+    FROM [dbo].[Vista_SaldosContacto] AS [Vista_SaldosContacto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Vista_UsuariosVerificados" EntityType="Self.Vista_UsuariosVerificados" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Vista_UsuariosVerificados].[id_usuario] AS [id_usuario], 
+    [Vista_UsuariosVerificados].[nombre] AS [nombre], 
+    [Vista_UsuariosVerificados].[apellido] AS [apellido], 
+    [Vista_UsuariosVerificados].[email] AS [email], 
+    [Vista_UsuariosVerificados].[dni] AS [dni], 
+    [Vista_UsuariosVerificados].[fecha_registro] AS [fecha_registro]
+    FROM [dbo].[Vista_UsuariosVerificados] AS [Vista_UsuariosVerificados]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__CuentaBan__id_us__48CFD27E" Association="Self.FK__CuentaBan__id_us__48CFD27E">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaBancaria" EntitySet="CuentaBancaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaDig__id_us__412EB0B6" Association="Self.FK__CuentaDig__id_us__412EB0B6">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaDigital" EntitySet="CuentaDigital" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MetodoPag__id_us__44FF419A" Association="Self.FK__MetodoPag__id_us__44FF419A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="MetodoPago" EntitySet="MetodoPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_cu__5070F446" Association="Self.FK__Movimient__id_cu__5070F446">
+            <End Role="CuentaDigital" EntitySet="CuentaDigital" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_cu__5165187F" Association="Self.FK__Movimient__id_cu__5165187F">
+            <End Role="CuentaDigital" EntitySet="CuentaDigital" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_me__52593CB8" Association="Self.FK__Movimient__id_me__52593CB8">
+            <End Role="MetodoPago" EntitySet="MetodoPago" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_tr__4F7CD00D" Association="Self.FK__Movimient__id_tr__4F7CD00D">
+            <End Role="Transaccion" EntitySet="Transaccion" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MercadoPagoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CuentaBancaria">
+          <Key>
+            <PropertyRef Name="id_cuenta_bancaria" />
+          </Key>
+          <Property Name="id_cuenta_bancaria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="cbu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_banco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__CuentaBan__id_us__48CFD27E" FromRole="CuentaBancaria" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="CuentaDigital">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="cvu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="saldo_actual" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="moneda" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__CuentaDig__id_us__412EB0B6" FromRole="CuentaDigital" ToRole="Usuario" />
+          <NavigationProperty Name="MovimientoCuenta" Relationship="Self.FK__Movimient__id_cu__5070F446" FromRole="CuentaDigital" ToRole="MovimientoCuenta" />
+          <NavigationProperty Name="MovimientoCuenta1" Relationship="Self.FK__Movimient__id_cu__5165187F" FromRole="CuentaDigital" ToRole="MovimientoCuenta" />
+        </EntityType>
+        <EntityType Name="MetodoPago">
+          <Key>
+            <PropertyRef Name="id_metodo" />
+          </Key>
+          <Property Name="id_metodo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="tipo_metodo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="token_tarjeta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ultimos_4_digitos" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="banco_emisor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__MetodoPag__id_us__44FF419A" FromRole="MetodoPago" ToRole="Usuario" />
+          <NavigationProperty Name="MovimientoCuenta" Relationship="Self.FK__Movimient__id_me__52593CB8" FromRole="MetodoPago" ToRole="MovimientoCuenta" />
+        </EntityType>
+        <EntityType Name="MovimientoCuenta">
+          <Key>
+            <PropertyRef Name="id_movimiento" />
+          </Key>
+          <Property Name="id_movimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_transaccion" Type="Int32" Nullable="false" />
+          <Property Name="id_cuenta_origen" Type="Int32" />
+          <Property Name="id_cuenta_destino" Type="Int32" />
+          <Property Name="id_metodo_pago_vinculado" Type="Int32" />
+          <Property Name="monto_afectado" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <NavigationProperty Name="CuentaDigital" Relationship="Self.FK__Movimient__id_cu__5070F446" FromRole="MovimientoCuenta" ToRole="CuentaDigital" />
+          <NavigationProperty Name="CuentaDigital1" Relationship="Self.FK__Movimient__id_cu__5165187F" FromRole="MovimientoCuenta" ToRole="CuentaDigital" />
+          <NavigationProperty Name="MetodoPago" Relationship="Self.FK__Movimient__id_me__52593CB8" FromRole="MovimientoCuenta" ToRole="MetodoPago" />
+          <NavigationProperty Name="Transaccion" Relationship="Self.FK__Movimient__id_tr__4F7CD00D" FromRole="MovimientoCuenta" ToRole="Transaccion" />
+        </EntityType>
+        <EntityType Name="Transaccion">
+          <Key>
+            <PropertyRef Name="id_transaccion" />
+          </Key>
+          <Property Name="id_transaccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="monto" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="fecha_hora" Type="DateTime" Precision="3" />
+          <Property Name="tipo_transaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tarifa_comision" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="referencia_externa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MovimientoCuenta" Relationship="Self.FK__Movimient__id_tr__4F7CD00D" FromRole="Transaccion" ToRole="MovimientoCuenta" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dni" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_hash" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+          <Property Name="estado_kyc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CuentaBancaria" Relationship="Self.FK__CuentaBan__id_us__48CFD27E" FromRole="Usuario" ToRole="CuentaBancaria" />
+          <NavigationProperty Name="CuentaDigital" Relationship="Self.FK__CuentaDig__id_us__412EB0B6" FromRole="Usuario" ToRole="CuentaDigital" />
+          <NavigationProperty Name="MetodoPago" Relationship="Self.FK__MetodoPag__id_us__44FF419A" FromRole="Usuario" ToRole="MetodoPago" />
+        </EntityType>
+        <EntityType Name="Vista_SaldosContacto">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellido" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="cvu" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cvu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="saldo_actual" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="moneda" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Vista_UsuariosVerificados">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellido" />
+            <PropertyRef Name="email" />
+            <PropertyRef Name="dni" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__CuentaBan__id_us__48CFD27E">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CuentaBancaria" Type="Self.CuentaBancaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="CuentaBancaria">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaDig__id_us__412EB0B6">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CuentaDigital" Type="Self.CuentaDigital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="CuentaDigital">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_cu__5070F446">
+          <End Role="CuentaDigital" Type="Self.CuentaDigital" Multiplicity="0..1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaDigital">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_cuenta_origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_cu__5165187F">
+          <End Role="CuentaDigital" Type="Self.CuentaDigital" Multiplicity="0..1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaDigital">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_cuenta_destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MetodoPag__id_us__44FF419A">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="MetodoPago" Type="Self.MetodoPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="MetodoPago">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_me__52593CB8">
+          <End Role="MetodoPago" Type="Self.MetodoPago" Multiplicity="0..1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodoPago">
+              <PropertyRef Name="id_metodo" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_metodo_pago_vinculado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Movimient__id_tr__4F7CD00D">
+          <End Role="Transaccion" Type="Self.Transaccion" Multiplicity="1" />
+          <End Role="MovimientoCuenta" Type="Self.MovimientoCuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaccion">
+              <PropertyRef Name="id_transaccion" />
+            </Principal>
+            <Dependent Role="MovimientoCuenta">
+              <PropertyRef Name="id_transaccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MercadoPagoDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CuentaBancaria" EntityType="Self.CuentaBancaria" />
+          <EntitySet Name="CuentaDigital" EntityType="Self.CuentaDigital" />
+          <EntitySet Name="MetodoPago" EntityType="Self.MetodoPago" />
+          <EntitySet Name="MovimientoCuenta" EntityType="Self.MovimientoCuenta" />
+          <EntitySet Name="Transaccion" EntityType="Self.Transaccion" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Vista_SaldosContacto" EntityType="Self.Vista_SaldosContacto" />
+          <EntitySet Name="Vista_UsuariosVerificados" EntityType="Self.Vista_UsuariosVerificados" />
+          <AssociationSet Name="FK__CuentaBan__id_us__48CFD27E" Association="Self.FK__CuentaBan__id_us__48CFD27E">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaBancaria" EntitySet="CuentaBancaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaDig__id_us__412EB0B6" Association="Self.FK__CuentaDig__id_us__412EB0B6">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaDigital" EntitySet="CuentaDigital" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_cu__5070F446" Association="Self.FK__Movimient__id_cu__5070F446">
+            <End Role="CuentaDigital" EntitySet="CuentaDigital" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_cu__5165187F" Association="Self.FK__Movimient__id_cu__5165187F">
+            <End Role="CuentaDigital" EntitySet="CuentaDigital" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MetodoPag__id_us__44FF419A" Association="Self.FK__MetodoPag__id_us__44FF419A">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="MetodoPago" EntitySet="MetodoPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_me__52593CB8" Association="Self.FK__Movimient__id_me__52593CB8">
+            <End Role="MetodoPago" EntitySet="MetodoPago" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Movimient__id_tr__4F7CD00D" Association="Self.FK__Movimient__id_tr__4F7CD00D">
+            <End Role="Transaccion" EntitySet="Transaccion" />
+            <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
+          </AssociationSet>
+          <FunctionImport Name="SP_ActualizarEstadoKYC">
+            <Parameter Name="id_usuario" Mode="In" Type="Int32" />
+            <Parameter Name="nuevo_estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_RealizarTransferencia">
+            <Parameter Name="id_origen" Mode="In" Type="Int32" />
+            <Parameter Name="id_destino" Mode="In" Type="Int32" />
+            <Parameter Name="monto" Mode="In" Type="Decimal" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MercadoPagoDBModelStoreContainer" CdmEntityContainer="MercadoPagoDBEntities1">
+          <EntitySetMapping Name="CuentaBancaria">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.CuentaBancaria">
+              <MappingFragment StoreEntitySet="CuentaBancaria">
+                <ScalarProperty Name="id_cuenta_bancaria" ColumnName="id_cuenta_bancaria" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="cbu" ColumnName="cbu" />
+                <ScalarProperty Name="nombre_banco" ColumnName="nombre_banco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentaDigital">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.CuentaDigital">
+              <MappingFragment StoreEntitySet="CuentaDigital">
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="cvu" ColumnName="cvu" />
+                <ScalarProperty Name="alias" ColumnName="alias" />
+                <ScalarProperty Name="saldo_actual" ColumnName="saldo_actual" />
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MetodoPago">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.MetodoPago">
+              <MappingFragment StoreEntitySet="MetodoPago">
+                <ScalarProperty Name="id_metodo" ColumnName="id_metodo" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="tipo_metodo" ColumnName="tipo_metodo" />
+                <ScalarProperty Name="token_tarjeta" ColumnName="token_tarjeta" />
+                <ScalarProperty Name="ultimos_4_digitos" ColumnName="ultimos_4_digitos" />
+                <ScalarProperty Name="banco_emisor" ColumnName="banco_emisor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovimientoCuenta">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.MovimientoCuenta">
+              <MappingFragment StoreEntitySet="MovimientoCuenta">
+                <ScalarProperty Name="id_movimiento" ColumnName="id_movimiento" />
+                <ScalarProperty Name="id_transaccion" ColumnName="id_transaccion" />
+                <ScalarProperty Name="id_cuenta_origen" ColumnName="id_cuenta_origen" />
+                <ScalarProperty Name="id_cuenta_destino" ColumnName="id_cuenta_destino" />
+                <ScalarProperty Name="id_metodo_pago_vinculado" ColumnName="id_metodo_pago_vinculado" />
+                <ScalarProperty Name="monto_afectado" ColumnName="monto_afectado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaccion">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.Transaccion">
+              <MappingFragment StoreEntitySet="Transaccion">
+                <ScalarProperty Name="id_transaccion" ColumnName="id_transaccion" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
+                <ScalarProperty Name="tipo_transaccion" ColumnName="tipo_transaccion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="tarifa_comision" ColumnName="tarifa_comision" />
+                <ScalarProperty Name="referencia_externa" ColumnName="referencia_externa" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="estado_kyc" ColumnName="estado_kyc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vista_SaldosContacto">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.Vista_SaldosContacto">
+              <MappingFragment StoreEntitySet="Vista_SaldosContacto">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="cvu" ColumnName="cvu" />
+                <ScalarProperty Name="saldo_actual" ColumnName="saldo_actual" />
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vista_UsuariosVerificados">
+            <EntityTypeMapping TypeName="MercadoPagoDBModel.Vista_UsuariosVerificados">
+              <MappingFragment StoreEntitySet="Vista_UsuariosVerificados">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ActualizarEstadoKYC" FunctionName="MercadoPagoDBModel.Store.SP_ActualizarEstadoKYC" />
+          <FunctionImportMapping FunctionImportName="SP_RealizarTransferencia" FunctionName="MercadoPagoDBModel.Store.SP_RealizarTransferencia" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
