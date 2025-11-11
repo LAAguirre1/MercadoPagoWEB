@@ -1,0 +1,80 @@
+﻿@model MercadoPagoWEB.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Registrar Nueva Cuenta";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-9">
+        <div class="card shadow-sm border-0" style="border-radius: 1rem;">
+            <div class="card-body p-4 p-md-5">
+                <h2 class="text-center fw-bold mb-4">@ViewBag.Title</h2>
+                <p class="text-center text-muted mb-4">Crea tu cuenta para acceder a la billetera.</p>
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @* Muestra el resumen de errores (ej: "Email ya existe", "DNI duplicado") *@
+                    @Html.ValidationSummary("", new { @class = "text-danger mb-3" })
+
+                    <h5 class="fw-bold mb-3">Datos de tu Perfil</h5>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Nombre, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Apellido, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Apellido, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.DNI, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.DNI, new { @class = "form-control", @placeholder = "Ej: 30123456" })
+                        @Html.ValidationMessageFor(m => m.DNI, "", new { @class = "text-danger" })
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <h5 class="fw-bold mb-3">Datos de Seguridad</h5>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "tu@correo.com" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mínimo 6 caracteres" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus me-2"></i> Crear Cuenta
+                        </button>
+                    </div>
+                }
+
+                <hr class="my-4" />
+
+                <div class="text-center">
+                    <p class="mb-0">¿Ya tienes una cuenta?</p>
+                    @Html.ActionLink("Inicia sesión aquí", "Login", "Account", null, new { @class = "fw-bold text-decoration-none" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Habilitamos los scripts de validación de jQuery para esta vista *@
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

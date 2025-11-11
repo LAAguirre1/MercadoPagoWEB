@@ -72,6 +72,7 @@
           <Property Name="password_hash" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="estado_kyc" Type="varchar" MaxLength="30" />
+          <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'C:\UTN\DISTRIBUIDAS\MERCADOPAGOWEB\MERCADOPAGOWEB\DB\MERCADOPAGODB.MDF.dbo.Vista_SaldosContacto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -344,6 +345,7 @@ advertencia 6002: La tabla o vista 'C:\UTN\DISTRIBUIDAS\MERCADOPAGOWEB\MERCADOPA
           <NavigationProperty Name="CuentaBancaria" Relationship="Self.FK__CuentaBan__id_us__48CFD27E" FromRole="Usuario" ToRole="CuentaBancaria" />
           <NavigationProperty Name="CuentaDigital" Relationship="Self.FK__CuentaDig__id_us__412EB0B6" FromRole="Usuario" ToRole="CuentaDigital" />
           <NavigationProperty Name="MetodoPago" Relationship="Self.FK__MetodoPag__id_us__44FF419A" FromRole="Usuario" ToRole="MetodoPago" />
+          <Property Name="AspNetUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Vista_SaldosContacto">
           <Key>
@@ -577,6 +579,7 @@ advertencia 6002: La tabla o vista 'C:\UTN\DISTRIBUIDAS\MERCADOPAGOWEB\MERCADOPA
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="MercadoPagoDBModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="dni" ColumnName="dni" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />

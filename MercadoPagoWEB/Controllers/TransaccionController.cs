@@ -4,9 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MercadoPagoWEB.Models;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace MercadoPagoWEB.Controllers
 {
+    [Authorize]
     public class TransaccionController : Controller
     {
         // Contexto de Entity Framework
@@ -16,12 +19,32 @@ namespace MercadoPagoWEB.Controllers
         // (Mi Botón de la billetera apunta a "Listado", "Transaccion")
         public ActionResult Listado()
         {
-            // **Simulación: asumimos que el usuario logueado tiene id_usuario = 2 **
-            // Reemplazar con la lógica de autenticación real cuando la tenga
-            int usuarioIDLoqueado = 2;
+            // --- INICIO DEL BLOQUE NUEVO (SÍNCRONO) ---
+
+            // 1. Obtener el ID de Identity (el string largo)
+            string idAspNetUser = User.Identity.GetUserId();
+            if (string.IsNullOrEmpty(idAspNetUser))
+            {
+                // Si [Authorize] falla, esto nos protege
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.Unauthorized, "No se pudo obtener la sesión de usuario.");
+            }
+
+            // 2. Buscar en nuestra tabla 'Usuario' usando ese ID (¡SIN Async!)
+            var usuario = db.Usuario.FirstOrDefault(u => u.AspNetUserId == idAspNetUser);
+
+            if (usuario == null)
+            {
+                // Esto pasaría si el usuario está logueado pero no tiene perfil
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "El perfil de usuario no está sincronizado.");
+            }
+
+            // 3. Ahora usamos el ID real del usuario que ha iniciado sesión
+            int usuarioIDLogueado = usuario.id_usuario;
+
+            // --- FIN DEL BLOQUE NUEVO ---
 
             // 1. Encontrar la cuenta digital del usuario
-            var cuentaUsuario = db.CuentaDigital.FirstOrDefault(c => c.id_usuario == usuarioIDLoqueado);
+            var cuentaUsuario = db.CuentaDigital.FirstOrDefault(c => c.id_usuario == usuarioIDLogueado);
 
             if (cuentaUsuario == null)
             {

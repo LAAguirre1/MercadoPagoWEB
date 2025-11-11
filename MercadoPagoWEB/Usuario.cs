@@ -30,6 +30,7 @@ namespace MercadoPagoWEB
         public string password_hash { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public string estado_kyc { get; set; }
+        public string AspNetUserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CuentaBancaria> CuentaBancaria { get; set; }

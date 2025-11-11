@@ -1,0 +1,41 @@
+@using Microsoft.AspNet.Identity
+
+@* Esta es una "Vista Parcial".
+    Determina si el usuario ha iniciado sesión y muestra los enlaces correctos.
+*@
+
+@if (Request.IsAuthenticated)
+{
+    @* Si el usuario ESTÁ logueado *@
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-nav" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav ms-auto">
+            @* Muestra el email del usuario como un enlace (podríamos cambiarlo por el nombre más adelante) *@
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user-circle me-1"></i> Hola, @User.Identity.GetUserName()!
+                </a>
+            </li>
+            @* Botón/enlace para cerrar sesión *@
+            <li class="nav-item">
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
+                    <i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión
+                </a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    @* Si el usuario NO ESTÁ logueado *@
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            @Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Iniciar Sesión", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "nav-link" })
+        </li>
+    </ul>
+}

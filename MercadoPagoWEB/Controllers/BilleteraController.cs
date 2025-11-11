@@ -7,13 +7,16 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using MercadoPagoWEB.Services;
 using MercadoPagoWEB.Excepcion;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace MercadoPagoWEB.Controllers
 {
+    [Authorize]
     public class BilleteraController : Controller
     {
         // Contexto de Base de Datos y Servicios (DI-like approach)
-        private MercadoPagoDBEntities1 db = new MercadoPagoDBEntities1();
+        private readonly MercadoPagoDBEntities1 db = new MercadoPagoDBEntities1();
         private readonly UsuarioService _usuarioService = new UsuarioService();
         private readonly RenaperService _renaperService = new RenaperService();
         private readonly ITransferenciaService _transferenciaService = new TransferenciaService();
@@ -21,8 +24,7 @@ namespace MercadoPagoWEB.Controllers
         // GET: Billetera
         public ActionResult Index()
         {
-            // ** SIMULACIÓN: Asumimos que el usuario logueado tiene id_usuario = 1 **
-            int usuarioIDLogueado = 2; // (Asegúrate de reemplazar con la lógica de sesión real)
+            int usuarioIDLogueado = ObtenerUsuarioIdActual();
 
             // 1. Obtener datos del usuario y cuenta (Usando LINQ de Entity Framework)
             var usuarioDB = db.Usuario.Find(usuarioIDLogueado);
@@ -143,8 +145,7 @@ namespace MercadoPagoWEB.Controllers
                 return View("TransferirForm", model);
             }
 
-            // ** SIMULACIÓN: Obtener el ID de usuario (igual que en tu método Index) **
-            int usuarioIDLogueado = 2; // (Asegúrate de reemplazar con la lógica de sesión real)
+            int usuarioIDLogueado = ObtenerUsuarioIdActual();
 
             try
             {
@@ -169,6 +170,26 @@ namespace MercadoPagoWEB.Controllers
                 ModelState.AddModelError("", $"Ocurrió un error inesperado. {ex.Message}");
                 return View("TransferirForm", model);
             }
+        }
+
+        /// <summary>
+        /// Obtiene el ID (int) de nuestra tabla 'Usuario' usando el ID (string) de Identity.
+        /// </summary>
+        private int ObtenerUsuarioIdActual()
+        {
+            // 1. Obtener el ID de Identity (el string largo)
+            string idAspNetUser = User.Identity.GetUserId();
+            if (string.IsNullOrEmpty(idAspNetUser))
+            {
+                // Esto no debería pasar si [Authorize] está puesto, pero es una buena validación
+                throw new Exception("No se pudo obtener el ID de usuario de la sesión.");
+            }
+
+            // 2. Buscar en nuestra tabla 'Usuario' usando ese ID
+            var usuario = db.Usuario.FirstOrDefault(u => u.AspNetUserId == idAspNetUser) ?? throw new Exception("El perfil de usuario no está sincronizado. Contacte a soporte.");
+
+            // 3. Devolver el ID (int) que usan todas tus otras tablas (CuentaDigital, etc.)
+            return usuario.id_usuario;
         }
     }
 }
