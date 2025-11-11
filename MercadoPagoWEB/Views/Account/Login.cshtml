@@ -2,56 +2,74 @@
 
 @{
     ViewBag.Title = "Iniciar Sesión";
+    // CAMBIO CLAVE: Le decimos a esta vista que use el nuevo layout
+    Layout = "~/Views/Shared/_LayoutLimpio.cshtml";
 }
 
 <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-8">
-        <div class="card shadow-sm border-0" style="border-radius: 1rem;">
-            <div class="card-body p-4 p-md-5">
-                <h2 class="text-center fw-bold mb-4">@ViewBag.Title</h2>
+    <div class="col-lg-4 col-md-7">
 
-                @* El formulario envía los datos a la acción "Login" (POST) del AccountController *@
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
+        @*
+            CAMBIO (Minimalista):
+            Eliminamos toda la <div class="card"> y el <div class="card-header">.
+            El formulario ahora "flota" directamente sobre el fondo bg-light.
+        *@
 
-                    @* Muestra el resumen de errores (ej: "Intento de inicio de sesión no válido") *@
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.Email, new { @class = "form-label fw-bold" })
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", @placeholder = "tu@correo.com" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.Password, new { @class = "form-label fw-bold" })
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", @placeholder = "••••••••" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-
-                    <div class="mb-3 form-check">
-                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
-                        @Html.LabelFor(m => m.RememberMe, new { @class = "form-check-label" })
-                    </div>
-
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="fas fa-sign-in-alt me-2"></i> Ingresar
-                        </button>
-                    </div>
-                }
-
-                <hr class="my-4" />
-
-                <div class="text-center">
-                    <p class="mb-0">¿No tienes una cuenta?</p>
-                    @* Enlace a la página de Registro que haremos en el siguiente paso *@
-                    @Html.ActionLink("Regístrate aquí", "Register", "Account", null, new { @class = "fw-bold text-decoration-none" })
-                </div>
-
-            </div>
+        @* NUEVO: Título simple centrado *@
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">@ViewBag.Title</h2>
+            <p class="text-muted">Ingresa a tu cuenta para continuar.</p>
         </div>
+
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+
+            @*
+                CAMBIO (Minimalista):
+                Eliminamos el @Html.LabelFor() y usamos
+                solo el placeholder.
+                También quitamos "form-control-lg".
+            *@
+            <div class="mb-3">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Correo Electrónico" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            @*
+                CAMBIO (Minimalista):
+                Eliminamos el @Html.LabelFor() y usamos
+                solo el placeholder.
+                También quitamos "form-control-lg".
+            *@
+            <div class="mb-3">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Contraseña" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3 form-check">
+                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
+                @Html.LabelFor(m => m.RememberMe, new { @class = "form-check-label" })
+            </div>
+
+            @* Mantenemos los botones de ancho completo (d-grid) *@
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i> Continuar
+                </button>
+            </div>
+        }
+
+        <hr class="my-4">
+
+        <div class="text-center">
+            <p class="mb-2">¿No tienes una cuenta?</p>
+            @Html.ActionLink("Crea una cuenta nueva", "Register", "Account", null, new { @class = "btn btn-outline-secondary w-100" })
+        </div>
+
     </div>
 </div>
 

@@ -19,7 +19,7 @@
     Esto le da a toda la app el fondo gris claro que empezamos
     a usar en la billetera, dándole un look más cohesivo.
 *@
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
     @* Navbar con Enlaces Personalizados y Color (BG-Primary depende de tu CSS) *@
     <div class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top shadow-sm">
         <div class="container">
@@ -58,14 +58,14 @@
     @* AÑADIDO: tag <main> para semántica HTML5
         AÑADIDO: "pt-3" (padding-top) para más espacio bajo la navbar
     *@
-    <main role="main" class="container body-content mt-5 pt-3">
+    <main role="main" class="container body-content mt-5 pt-3 flex-grow-1">
         @RenderBody()
     </main>
 
     @* ELIMINADO: El <hr /> y <footer> simple *@
 
     @* AÑADIDO: Un footer oscuro que coincide con la navbar *@
-    <footer class="bg-dark text-white text-center p-4 mt-5">
+    <footer class="bg-dark text-white text-center p-4 mt-auto">
         <div class="container">
             <p class="mb-0">&copy; @DateTime.Now.Year - Aplicación Distribuida</p>
         </div>

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mercado Pago App</title>
+
+    @* Copiamos los mismos CSS del _Layout principal *@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+@*
+    CAMBIO CLAVE:
+    Añadimos 'align-items-center' y 'justify-content-center'
+    para centrar el contenido (el formulario) vertical y horizontalmente.
+*@
+<body class="bg-light d-flex flex-column min-vh-100 justify-content-center">
+
+    @*
+        Este layout no tiene Navbar ni Footer.
+        Renderiza directamente el cuerpo (el formulario).
+    *@
+    <main class="container">
+        @RenderBody()
+    </main>
+
+    @* Copiamos los mismos Scripts del _Layout principal *@
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+    @* *** ESTA ES LA LÍNEA QUE SOLUCIONA EL ERROR ***
+        Le dice a la plantilla dónde renderizar la sección "Scripts"
+        definida en Login.cshtml y Register.cshtml.
+    *@
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
