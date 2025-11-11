@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BilleteraController.cs" />
+    <Compile Include="Controllers\TransaccionController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="CuentaBancaria.cs">
       <DependentUpon>MercadoPagoModel.tt</DependentUpon>
@@ -193,6 +194,7 @@
     <Compile Include="MetodoPago.cs">
       <DependentUpon>MercadoPagoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ActividadViewModel.cs" />
     <Compile Include="Models\ApiKeyRequest.cs" />
     <Compile Include="Models\BilleteraViewModel.cs" />
     <Compile Include="Models\TransferenciaViewModel.cs" />
@@ -261,6 +263,7 @@
     <Content Include="Views\Billetera\TransferirForm.cshtml" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
+    <Content Include="Views\Transaccion\ListadoActividad.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
