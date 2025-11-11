@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MercadoPagoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MercadoPagoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CuentaBancaria">
           <Key>
             <PropertyRef Name="id_cuenta_bancaria" />
@@ -259,8 +259,7 @@ advertencia 6002: La tabla o vista 'C:\UTN\DISTRIBUIDAS\MERCADOPAGOWEB\MERCADOPA
             <End Role="MovimientoCuenta" EntitySet="MovimientoCuenta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MercadoPagoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -502,7 +501,7 @@ advertencia 6002: La tabla o vista 'C:\UTN\DISTRIBUIDAS\MERCADOPAGOWEB\MERCADOPA
             <Parameter Name="id_usuario" Mode="In" Type="Int32" />
             <Parameter Name="nuevo_estado" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_RealizarTransferencia">
+          <FunctionImport Name="SP_RealizarTransferencia" ReturnType="Collection(Int32)">
             <Parameter Name="id_origen" Mode="In" Type="Int32" />
             <Parameter Name="id_destino" Mode="In" Type="Int32" />
             <Parameter Name="monto" Mode="In" Type="Decimal" />

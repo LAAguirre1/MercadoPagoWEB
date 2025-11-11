@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using MercadoPagoWEB.Services;
+using MercadoPagoWEB.Excepcion;
 
 namespace MercadoPagoWEB.Controllers
 {
@@ -15,6 +16,7 @@ namespace MercadoPagoWEB.Controllers
         private MercadoPagoDBEntities1 db = new MercadoPagoDBEntities1();
         private readonly UsuarioService _usuarioService = new UsuarioService();
         private readonly RenaperService _renaperService = new RenaperService();
+        private readonly ITransferenciaService _transferenciaService = new TransferenciaService();
 
         // GET: Billetera
         public ActionResult Index()
@@ -112,6 +114,61 @@ namespace MercadoPagoWEB.Controllers
                 TempData["Error"] = "Error crítico en la base de datos: " + ex.Message;
             }
             return RedirectToAction("Index", "Billetera");
+        }
+
+
+        /// <summary>
+        /// GET: /Billetera/Transferir
+        /// Muestra el formulario para iniciar una transferencia.
+        /// </summary>
+        public ActionResult Transferir()
+        {
+            // Muestra una vista (puedes hacerla modal o una página separada)
+            // con el formulario de transferencia.
+            var model = new TransferenciaViewModel();
+            return View("TransferirForm", model); // Necesitarás crear esta vista
+        }
+
+        /// <summary>
+        /// POST: /Billetera/Transferir
+        /// Procesa el formulario de transferencia.
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Transferir(TransferenciaViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Si el modelo no es válido, vuelve a mostrar el formulario con errores
+                return View("TransferirForm", model);
+            }
+
+            // ** SIMULACIÓN: Obtener el ID de usuario (igual que en tu método Index) **
+            int usuarioIDLogueado = 2; // (Asegúrate de reemplazar con la lógica de sesión real)
+
+            try
+            {
+                // Llamar al servicio adaptado para EF6
+                await _transferenciaService.RealizarTransferenciaAsync(model, usuarioIDLogueado);
+
+                // Éxito: Redirigir al Index de la Billetera con mensaje de éxito
+                // (Usando el mismo patrón de TempData que usas en KYC)
+                TempData["Mensaje"] = $"¡Transferencia de ${model.Monto} realizada con éxito!";
+                return RedirectToAction("Index");
+            }
+            catch (TransferenciaException ex)
+            {
+                // Error de negocio (ej. "Saldo insuficiente")
+                // Lo mostramos como error en el formulario
+                ModelState.AddModelError("", ex.Message);
+                return View("TransferirForm", model);
+            }
+            catch (Exception ex)
+            {
+                // Error inesperado
+                ModelState.AddModelError("", $"Ocurrió un error inesperado. {ex.Message}");
+                return View("TransferirForm", model);
+            }
         }
     }
 }

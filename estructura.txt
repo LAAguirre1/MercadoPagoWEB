@@ -1,0 +1,823 @@
+Listado de rutas de carpetas
+El número de serie del volumen es C0C7-9DC7
+C:.
+¦   .gitattributes
+¦   .gitignore
+¦   estructura.txt
+¦   MercadoPagoWEB.sln
+¦   README.md
+¦   
++---MercadoPagoWEB
+¦   ¦   CuentaBancaria.cs
+¦   ¦   CuentaDigital.cs
+¦   ¦   Global.asax
+¦   ¦   Global.asax.cs
+¦   ¦   MercadoPagoModel.Context.cs
+¦   ¦   MercadoPagoModel.Context.tt
+¦   ¦   MercadoPagoModel.cs
+¦   ¦   MercadoPagoModel.Designer.cs
+¦   ¦   MercadoPagoModel.edmx
+¦   ¦   MercadoPagoModel.edmx.diagram
+¦   ¦   MercadoPagoModel.tt
+¦   ¦   MercadoPagoWEB.csproj
+¦   ¦   MercadoPagoWEB.csproj.user
+¦   ¦   MetodoPago.cs
+¦   ¦   MovimientoCuenta.cs
+¦   ¦   packages.config
+¦   ¦   Transaccion.cs
+¦   ¦   Usuario.cs
+¦   ¦   Vista_SaldosContacto.cs
+¦   ¦   Vista_UsuariosVerificados.cs
+¦   ¦   Web.config
+¦   ¦   Web.Debug.config
+¦   ¦   Web.Release.config
+¦   ¦   
+¦   +---App_Data
+¦   ¦       MercadoPagoDB.mdf
+¦   ¦       MercadoPagoDB_log.ldf
+¦   ¦       
+¦   +---App_Start
+¦   ¦       RouteConfig.cs
+¦   ¦       WebApiConfig.cs
+¦   ¦       
+¦   +---bin
+¦   ¦   ¦   EntityFramework.dll
+¦   ¦   ¦   EntityFramework.SqlServer.dll
+¦   ¦   ¦   EntityFramework.SqlServer.xml
+¦   ¦   ¦   EntityFramework.xml
+¦   ¦   ¦   MercadoPagoWEB.dll
+¦   ¦   ¦   MercadoPagoWEB.dll.config
+¦   ¦   ¦   MercadoPagoWEB.pdb
+¦   ¦   ¦   Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+¦   ¦   ¦   Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+¦   ¦   ¦   Microsoft.Web.Infrastructure.dll
+¦   ¦   ¦   Newtonsoft.Json.dll
+¦   ¦   ¦   Newtonsoft.Json.xml
+¦   ¦   ¦   System.Net.Http.Formatting.dll
+¦   ¦   ¦   System.Net.Http.Formatting.xml
+¦   ¦   ¦   System.Web.Helpers.dll
+¦   ¦   ¦   System.Web.Helpers.xml
+¦   ¦   ¦   System.Web.Http.dll
+¦   ¦   ¦   System.Web.Http.WebHost.dll
+¦   ¦   ¦   System.Web.Http.WebHost.xml
+¦   ¦   ¦   System.Web.Http.xml
+¦   ¦   ¦   System.Web.Mvc.dll
+¦   ¦   ¦   System.Web.Mvc.xml
+¦   ¦   ¦   System.Web.Razor.dll
+¦   ¦   ¦   System.Web.Razor.xml
+¦   ¦   ¦   System.Web.Webpages.Deployment.dll
+¦   ¦   ¦   System.Web.Webpages.Deployment.xml
+¦   ¦   ¦   System.Web.Webpages.dll
+¦   ¦   ¦   System.Web.Webpages.Razor.dll
+¦   ¦   ¦   System.Web.Webpages.Razor.xml
+¦   ¦   ¦   System.Web.Webpages.xml
+¦   ¦   ¦   
+¦   ¦   +---es
+¦   ¦   ¦       System.Net.Http.Formatting.resources.dll
+¦   ¦   ¦       System.Web.Helpers.resources.dll
+¦   ¦   ¦       System.Web.Http.resources.dll
+¦   ¦   ¦       System.Web.Http.WebHost.resources.dll
+¦   ¦   ¦       System.Web.Mvc.resources.dll
+¦   ¦   ¦       System.Web.Razor.resources.dll
+¦   ¦   ¦       System.Web.Webpages.Deployment.resources.dll
+¦   ¦   ¦       System.Web.Webpages.Razor.resources.dll
+¦   ¦   ¦       System.Web.Webpages.resources.dll
+¦   ¦   ¦       
+¦   ¦   +---roslyn
+¦   ¦           csc.exe
+¦   ¦           csc.exe.config
+¦   ¦           csc.rsp
+¦   ¦           csi.exe
+¦   ¦           csi.exe.config
+¦   ¦           csi.rsp
+¦   ¦           Microsoft.Build.Tasks.CodeAnalysis.dll
+¦   ¦           Microsoft.CodeAnalysis.CSharp.dll
+¦   ¦           Microsoft.CodeAnalysis.CSharp.Scripting.dll
+¦   ¦           Microsoft.CodeAnalysis.dll
+¦   ¦           Microsoft.CodeAnalysis.Scripting.dll
+¦   ¦           Microsoft.CodeAnalysis.VisualBasic.dll
+¦   ¦           Microsoft.CSharp.Core.targets
+¦   ¦           Microsoft.DiaSymReader.Native.amd64.dll
+¦   ¦           Microsoft.DiaSymReader.Native.x86.dll
+¦   ¦           Microsoft.Managed.Core.targets
+¦   ¦           Microsoft.VisualBasic.Core.targets
+¦   ¦           Microsoft.Win32.Primitives.dll
+¦   ¦           System.AppContext.dll
+¦   ¦           System.Collections.Immutable.dll
+¦   ¦           System.Console.dll
+¦   ¦           System.Diagnostics.DiagnosticSource.dll
+¦   ¦           System.Diagnostics.FileVersionInfo.dll
+¦   ¦           System.Diagnostics.StackTrace.dll
+¦   ¦           System.Globalization.Calendars.dll
+¦   ¦           System.IO.Compression.dll
+¦   ¦           System.IO.Compression.ZipFile.dll
+¦   ¦           System.IO.FileSystem.dll
+¦   ¦           System.IO.FileSystem.Primitives.dll
+¦   ¦           System.Net.Http.dll
+¦   ¦           System.Net.Sockets.dll
+¦   ¦           System.Reflection.Metadata.dll
+¦   ¦           System.Runtime.InteropServices.RuntimeInformation.dll
+¦   ¦           System.Security.Cryptography.Algorithms.dll
+¦   ¦           System.Security.Cryptography.Encoding.dll
+¦   ¦           System.Security.Cryptography.Primitives.dll
+¦   ¦           System.Security.Cryptography.X509Certificates.dll
+¦   ¦           System.Text.Encoding.CodePages.dll
+¦   ¦           System.Threading.Tasks.Extensions.dll
+¦   ¦           System.ValueTuple.dll
+¦   ¦           System.Xml.ReaderWriter.dll
+¦   ¦           System.Xml.XmlDocument.dll
+¦   ¦           System.Xml.XPath.dll
+¦   ¦           System.Xml.XPath.XDocument.dll
+¦   ¦           vbc.exe
+¦   ¦           vbc.exe.config
+¦   ¦           vbc.rsp
+¦   ¦           VBCSCompiler.exe
+¦   ¦           VBCSCompiler.exe.config
+¦   ¦           
+¦   +---Content
+¦   ¦       bootstrap-grid.css
+¦   ¦       bootstrap-grid.css.map
+¦   ¦       bootstrap-grid.min.css
+¦   ¦       bootstrap-grid.min.css.map
+¦   ¦       bootstrap-grid.rtl.css
+¦   ¦       bootstrap-grid.rtl.css.map
+¦   ¦       bootstrap-grid.rtl.min.css
+¦   ¦       bootstrap-grid.rtl.min.css.map
+¦   ¦       bootstrap-reboot.css
+¦   ¦       bootstrap-reboot.css.map
+¦   ¦       bootstrap-reboot.min.css
+¦   ¦       bootstrap-reboot.min.css.map
+¦   ¦       bootstrap-reboot.rtl.css
+¦   ¦       bootstrap-reboot.rtl.css.map
+¦   ¦       bootstrap-reboot.rtl.min.css
+¦   ¦       bootstrap-reboot.rtl.min.css.map
+¦   ¦       bootstrap-utilities.css
+¦   ¦       bootstrap-utilities.css.map
+¦   ¦       bootstrap-utilities.min.css
+¦   ¦       bootstrap-utilities.min.css.map
+¦   ¦       bootstrap-utilities.rtl.css
+¦   ¦       bootstrap-utilities.rtl.css.map
+¦   ¦       bootstrap-utilities.rtl.min.css
+¦   ¦       bootstrap-utilities.rtl.min.css.map
+¦   ¦       bootstrap.css
+¦   ¦       bootstrap.css.map
+¦   ¦       bootstrap.min.css
+¦   ¦       bootstrap.min.css.map
+¦   ¦       bootstrap.rtl.css
+¦   ¦       bootstrap.rtl.css.map
+¦   ¦       bootstrap.rtl.min.css
+¦   ¦       bootstrap.rtl.min.css.map
+¦   ¦       Site.css
+¦   ¦       
+¦   +---Controllers
+¦   ¦       BilleteraController.cs
+¦   ¦       UsuariosController.cs
+¦   ¦       
+¦   +---DB
+¦   ¦       MercadoPagoDB.mdf
+¦   ¦       MercadoPagoDB_log.ldf
+¦   ¦       
+¦   +---Excepcion
+¦   ¦       TransferenciaException.cs
+¦   ¦       
+¦   +---Models
+¦   ¦       ApiKeyRequest.cs
+¦   ¦       BilleteraViewModel.cs
+¦   ¦       TransferenciaViewModel.cs
+¦   ¦       
+¦   +---obj
+¦   ¦   +---Debug
+¦   ¦   ¦   ¦   .NETFramework,Version=v4.8.AssemblyAttributes.cs
+¦   ¦   ¦   ¦   DesignTimeResolveAssemblyReferences.cache
+¦   ¦   ¦   ¦   DesignTimeResolveAssemblyReferencesInput.cache
+¦   ¦   ¦   ¦   MercadoP.9232A806.Up2Date
+¦   ¦   ¦   ¦   MercadoPagoWEB.csproj.AssemblyReference.cache
+¦   ¦   ¦   ¦   MercadoPagoWEB.csproj.CoreCompileInputs.cache
+¦   ¦   ¦   ¦   MercadoPagoWEB.csproj.FileListAbsolute.txt
+¦   ¦   ¦   ¦   MercadoPagoWEB.dll
+¦   ¦   ¦   ¦   MercadoPagoWEB.pdb
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   +---edmxResourcesToEmbed
+¦   ¦   ¦   ¦       MercadoPagoModel.csdl
+¦   ¦   ¦   ¦       MercadoPagoModel.msl
+¦   ¦   ¦   ¦       MercadoPagoModel.ssdl
+¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---TempPE
+¦   ¦   ¦           MercadoPagoModel.Context.cs.dll
+¦   ¦   ¦           MercadoPagoModel.cs.dll
+¦   ¦   ¦           MercadoPagoModel.Designer.cs.dll
+¦   ¦   ¦           
+¦   ¦   +---Release
+¦   ¦           .NETFramework,Version=v4.8.AssemblyAttributes.cs
+¦   ¦           MercadoPagoWEB.csproj.AssemblyReference.cache
+¦   ¦           
+¦   +---Properties
+¦   ¦       AssemblyInfo.cs
+¦   ¦       
+¦   +---Scripts
+¦   ¦       bootstrap.bundle.js
+¦   ¦       bootstrap.bundle.js.map
+¦   ¦       bootstrap.bundle.min.js
+¦   ¦       bootstrap.bundle.min.js.map
+¦   ¦       bootstrap.esm.js
+¦   ¦       bootstrap.esm.js.map
+¦   ¦       bootstrap.esm.min.js
+¦   ¦       bootstrap.esm.min.js.map
+¦   ¦       bootstrap.js
+¦   ¦       bootstrap.js.map
+¦   ¦       bootstrap.min.js
+¦   ¦       bootstrap.min.js.map
+¦   ¦       
+¦   +---Services
+¦   ¦       ITransferenciaService.cs
+¦   ¦       RenaperService.cs
+¦   ¦       TransferenciaService.cs
+¦   ¦       UsuarioService.cs
+¦   ¦       
+¦   +---Views
+¦       ¦   web.config
+¦       ¦   _ViewStart.cshtml
+¦       ¦   
+¦       +---Billetera
+¦       ¦       MiBilletera.cshtml
+¦       ¦       ResultadoPrueba.cshtml
+¦       ¦       TransferirForm.cshtml
+¦       ¦       
+¦       +---Shared
+¦       ¦       _Layout.cshtml
+¦       ¦       
+¦       +---Usuarios
+¦               Create.cshtml
+¦               Delete.cshtml
+¦               Details.cshtml
+¦               Edit.cshtml
+¦               Index.cshtml
+¦               
++---packages
+    +---bootstrap.5.3.8
+    ¦   ¦   .signature.p7s
+    ¦   ¦   bootstrap.5.3.8.nupkg
+    ¦   ¦   bootstrap.png
+    ¦   ¦   
+    ¦   +---content
+    ¦   ¦   +---Content
+    ¦   ¦   ¦       bootstrap-grid.css
+    ¦   ¦   ¦       bootstrap-grid.css.map
+    ¦   ¦   ¦       bootstrap-grid.min.css
+    ¦   ¦   ¦       bootstrap-grid.min.css.map
+    ¦   ¦   ¦       bootstrap-grid.rtl.css
+    ¦   ¦   ¦       bootstrap-grid.rtl.css.map
+    ¦   ¦   ¦       bootstrap-grid.rtl.min.css
+    ¦   ¦   ¦       bootstrap-grid.rtl.min.css.map
+    ¦   ¦   ¦       bootstrap-reboot.css
+    ¦   ¦   ¦       bootstrap-reboot.css.map
+    ¦   ¦   ¦       bootstrap-reboot.min.css
+    ¦   ¦   ¦       bootstrap-reboot.min.css.map
+    ¦   ¦   ¦       bootstrap-reboot.rtl.css
+    ¦   ¦   ¦       bootstrap-reboot.rtl.css.map
+    ¦   ¦   ¦       bootstrap-reboot.rtl.min.css
+    ¦   ¦   ¦       bootstrap-reboot.rtl.min.css.map
+    ¦   ¦   ¦       bootstrap-utilities.css
+    ¦   ¦   ¦       bootstrap-utilities.css.map
+    ¦   ¦   ¦       bootstrap-utilities.min.css
+    ¦   ¦   ¦       bootstrap-utilities.min.css.map
+    ¦   ¦   ¦       bootstrap-utilities.rtl.css
+    ¦   ¦   ¦       bootstrap-utilities.rtl.css.map
+    ¦   ¦   ¦       bootstrap-utilities.rtl.min.css
+    ¦   ¦   ¦       bootstrap-utilities.rtl.min.css.map
+    ¦   ¦   ¦       bootstrap.css
+    ¦   ¦   ¦       bootstrap.css.map
+    ¦   ¦   ¦       bootstrap.min.css
+    ¦   ¦   ¦       bootstrap.min.css.map
+    ¦   ¦   ¦       bootstrap.rtl.css
+    ¦   ¦   ¦       bootstrap.rtl.css.map
+    ¦   ¦   ¦       bootstrap.rtl.min.css
+    ¦   ¦   ¦       bootstrap.rtl.min.css.map
+    ¦   ¦   ¦       
+    ¦   ¦   +---Scripts
+    ¦   ¦           bootstrap.bundle.js
+    ¦   ¦           bootstrap.bundle.js.map
+    ¦   ¦           bootstrap.bundle.min.js
+    ¦   ¦           bootstrap.bundle.min.js.map
+    ¦   ¦           bootstrap.esm.js
+    ¦   ¦           bootstrap.esm.js.map
+    ¦   ¦           bootstrap.esm.min.js
+    ¦   ¦           bootstrap.esm.min.js.map
+    ¦   ¦           bootstrap.js
+    ¦   ¦           bootstrap.js.map
+    ¦   ¦           bootstrap.min.js
+    ¦   ¦           bootstrap.min.js.map
+    ¦   ¦           
+    ¦   +---contentFiles
+    ¦       +---any
+    ¦           +---any
+    ¦               +---wwwroot
+    ¦                   +---css
+    ¦                   ¦       bootstrap-grid.css
+    ¦                   ¦       bootstrap-grid.css.map
+    ¦                   ¦       bootstrap-grid.min.css
+    ¦                   ¦       bootstrap-grid.min.css.map
+    ¦                   ¦       bootstrap-grid.rtl.css
+    ¦                   ¦       bootstrap-grid.rtl.css.map
+    ¦                   ¦       bootstrap-grid.rtl.min.css
+    ¦                   ¦       bootstrap-grid.rtl.min.css.map
+    ¦                   ¦       bootstrap-reboot.css
+    ¦                   ¦       bootstrap-reboot.css.map
+    ¦                   ¦       bootstrap-reboot.min.css
+    ¦                   ¦       bootstrap-reboot.min.css.map
+    ¦                   ¦       bootstrap-reboot.rtl.css
+    ¦                   ¦       bootstrap-reboot.rtl.css.map
+    ¦                   ¦       bootstrap-reboot.rtl.min.css
+    ¦                   ¦       bootstrap-reboot.rtl.min.css.map
+    ¦                   ¦       bootstrap-utilities.css
+    ¦                   ¦       bootstrap-utilities.css.map
+    ¦                   ¦       bootstrap-utilities.min.css
+    ¦                   ¦       bootstrap-utilities.min.css.map
+    ¦                   ¦       bootstrap-utilities.rtl.css
+    ¦                   ¦       bootstrap-utilities.rtl.css.map
+    ¦                   ¦       bootstrap-utilities.rtl.min.css
+    ¦                   ¦       bootstrap-utilities.rtl.min.css.map
+    ¦                   ¦       bootstrap.css
+    ¦                   ¦       bootstrap.css.map
+    ¦                   ¦       bootstrap.min.css
+    ¦                   ¦       bootstrap.min.css.map
+    ¦                   ¦       bootstrap.rtl.css
+    ¦                   ¦       bootstrap.rtl.css.map
+    ¦                   ¦       bootstrap.rtl.min.css
+    ¦                   ¦       bootstrap.rtl.min.css.map
+    ¦                   ¦       
+    ¦                   +---js
+    ¦                           bootstrap.bundle.js
+    ¦                           bootstrap.bundle.js.map
+    ¦                           bootstrap.bundle.min.js
+    ¦                           bootstrap.bundle.min.js.map
+    ¦                           bootstrap.esm.js
+    ¦                           bootstrap.esm.js.map
+    ¦                           bootstrap.esm.min.js
+    ¦                           bootstrap.esm.min.js.map
+    ¦                           bootstrap.js
+    ¦                           bootstrap.js.map
+    ¦                           bootstrap.min.js
+    ¦                           bootstrap.min.js.map
+    ¦                           
+    +---EntityFramework.6.5.1
+    ¦   ¦   .signature.p7s
+    ¦   ¦   EntityFramework.6.5.1.nupkg
+    ¦   ¦   Icon.png
+    ¦   ¦   README.md
+    ¦   ¦   
+    ¦   +---build
+    ¦   ¦   ¦   EntityFramework.DefaultItems.props
+    ¦   ¦   ¦   EntityFramework.props
+    ¦   ¦   ¦   EntityFramework.targets
+    ¦   ¦   ¦   Microsoft.Data.Entity.Build.Tasks.dll
+    ¦   ¦   ¦   
+    ¦   ¦   +---net6.0
+    ¦   ¦           EntityFramework.props
+    ¦   ¦           EntityFramework.targets
+    ¦   ¦           
+    ¦   +---buildTransitive
+    ¦   ¦   ¦   EntityFramework.props
+    ¦   ¦   ¦   EntityFramework.targets
+    ¦   ¦   ¦   
+    ¦   ¦   +---net6.0
+    ¦   ¦           EntityFramework.props
+    ¦   ¦           EntityFramework.targets
+    ¦   ¦           
+    ¦   +---content
+    ¦   ¦   +---net40
+    ¦   ¦           App.config.install.xdt
+    ¦   ¦           App.config.transform
+    ¦   ¦           Web.config.install.xdt
+    ¦   ¦           Web.config.transform
+    ¦   ¦           
+    ¦   +---lib
+    ¦   ¦   +---net40
+    ¦   ¦   ¦       EntityFramework.dll
+    ¦   ¦   ¦       EntityFramework.SqlServer.dll
+    ¦   ¦   ¦       EntityFramework.SqlServer.xml
+    ¦   ¦   ¦       EntityFramework.xml
+    ¦   ¦   ¦       
+    ¦   ¦   +---net45
+    ¦   ¦   ¦       EntityFramework.dll
+    ¦   ¦   ¦       EntityFramework.SqlServer.dll
+    ¦   ¦   ¦       EntityFramework.SqlServer.xml
+    ¦   ¦   ¦       EntityFramework.xml
+    ¦   ¦   ¦       
+    ¦   ¦   +---netstandard2.1
+    ¦   ¦           EntityFramework.dll
+    ¦   ¦           EntityFramework.SqlServer.dll
+    ¦   ¦           EntityFramework.SqlServer.xml
+    ¦   ¦           EntityFramework.xml
+    ¦   ¦           
+    ¦   +---tools
+    ¦       ¦   about_EntityFramework6.help.txt
+    ¦       ¦   EntityFramework6.PS2.psd1
+    ¦       ¦   EntityFramework6.PS2.psm1
+    ¦       ¦   EntityFramework6.psd1
+    ¦       ¦   EntityFramework6.psm1
+    ¦       ¦   init.ps1
+    ¦       ¦   install.ps1
+    ¦       ¦   
+    ¦       +---net40
+    ¦       ¦   +---any
+    ¦       ¦   ¦       ef6.exe
+    ¦       ¦   ¦       ef6.pdb
+    ¦       ¦   ¦       
+    ¦       ¦   +---win-arm64
+    ¦       ¦   ¦       ef6.exe
+    ¦       ¦   ¦       ef6.pdb
+    ¦       ¦   ¦       
+    ¦       ¦   +---win-x86
+    ¦       ¦           ef6.exe
+    ¦       ¦           ef6.pdb
+    ¦       ¦           
+    ¦       +---net45
+    ¦       ¦   +---any
+    ¦       ¦   ¦       ef6.exe
+    ¦       ¦   ¦       ef6.pdb
+    ¦       ¦   ¦       
+    ¦       ¦   +---win-arm64
+    ¦       ¦   ¦       ef6.exe
+    ¦       ¦   ¦       ef6.pdb
+    ¦       ¦   ¦       
+    ¦       ¦   +---win-x86
+    ¦       ¦           ef6.exe
+    ¦       ¦           ef6.pdb
+    ¦       ¦           
+    ¦       +---net6.0
+    ¦           +---any
+    ¦                   ef6.dll
+    ¦                   ef6.pdb
+    ¦                   ef6.runtimeconfig.json
+    ¦                   
+    +---Microsoft.AspNet.Mvc.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.Mvc.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ENU.txt
+    ¦   ¦   
+    ¦   +---Content
+    ¦   ¦       Web.config.install.xdt
+    ¦   ¦       Web.config.uninstall.xdt
+    ¦   ¦       
+    ¦   +---lib
+    ¦       +---net45
+    ¦           ¦   System.Web.Mvc.dll
+    ¦           ¦   System.Web.Mvc.xml
+    ¦           ¦   
+    ¦           +---es
+    ¦                   System.Web.Mvc.resources.dll
+    ¦                   System.Web.Mvc.xml
+    ¦                   
+    +---Microsoft.AspNet.Mvc.es.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.Mvc.es.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ESN.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           +---es
+    ¦                   System.Web.Mvc.resources.dll
+    ¦                   System.Web.Mvc.xml
+    ¦                   
+    +---Microsoft.AspNet.Razor.3.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.Razor.3.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ENU.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           ¦   System.Web.Razor.dll
+    ¦           ¦   System.Web.Razor.xml
+    ¦           ¦   
+    ¦           +---es
+    ¦                   System.Web.Razor.resources.dll
+    ¦                   system.web.razor.xml
+    ¦                   
+    +---Microsoft.AspNet.Razor.es.3.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.Razor.es.3.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ESN.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           +---es
+    ¦                   System.Web.Razor.resources.dll
+    ¦                   system.web.razor.xml
+    ¦                   
+    +---Microsoft.AspNet.WebApi.5.2.9
+    ¦       .signature.p7s
+    ¦       Microsoft.AspNet.WebApi.5.2.9.nupkg
+    ¦       NET.icon.png
+    ¦       NET_Library_EULA_ENU.txt
+    ¦       
+    +---Microsoft.AspNet.WebApi.Client.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebApi.Client.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ENU.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦       ¦   ¦   System.Net.Http.Formatting.dll
+    ¦       ¦   ¦   System.Net.Http.Formatting.xml
+    ¦       ¦   ¦   
+    ¦       ¦   +---es
+    ¦       ¦           System.Net.Http.Formatting.resources.dll
+    ¦       ¦           System.Net.Http.Formatting.xml
+    ¦       ¦           
+    ¦       +---netstandard2.0
+    ¦       ¦       System.Net.Http.Formatting.dll
+    ¦       ¦       System.Net.Http.Formatting.xml
+    ¦       ¦       
+    ¦       +---portable-wp8+netcore45+net45+wp81+wpa81
+    ¦               System.Net.Http.Formatting.dll
+    ¦               System.Net.Http.Formatting.xml
+    ¦               
+    +---Microsoft.AspNet.WebApi.Client.es.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebApi.Client.es.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ESN.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           +---es
+    ¦                   System.Net.Http.Formatting.resources.dll
+    ¦                   System.Net.Http.Formatting.xml
+    ¦                   
+    +---Microsoft.AspNet.WebApi.Core.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebApi.Core.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ENU.txt
+    ¦   ¦   
+    ¦   +---Content
+    ¦   ¦       web.config.transform
+    ¦   ¦       
+    ¦   +---lib
+    ¦       +---net45
+    ¦           ¦   System.Web.Http.dll
+    ¦           ¦   System.Web.Http.xml
+    ¦           ¦   
+    ¦           +---es
+    ¦                   System.Web.Http.resources.dll
+    ¦                   System.Web.Http.xml
+    ¦                   
+    +---Microsoft.AspNet.WebApi.Core.es.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebApi.Core.es.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ESN.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           +---es
+    ¦                   System.Web.Http.resources.dll
+    ¦                   System.Web.Http.xml
+    ¦                   
+    +---Microsoft.AspNet.WebApi.WebHost.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebApi.WebHost.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ENU.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           ¦   System.Web.Http.WebHost.dll
+    ¦           ¦   System.Web.Http.WebHost.xml
+    ¦           ¦   
+    ¦           +---es
+    ¦                   System.Web.Http.WebHost.resources.dll
+    ¦                   System.Web.Http.WebHost.xml
+    ¦                   
+    +---Microsoft.AspNet.WebApi.WebHost.es.5.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebApi.WebHost.es.5.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ESN.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           +---es
+    ¦                   System.Web.Http.WebHost.resources.dll
+    ¦                   System.Web.Http.WebHost.xml
+    ¦                   
+    +---Microsoft.AspNet.WebPages.3.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebPages.3.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ENU.txt
+    ¦   ¦   
+    ¦   +---Content
+    ¦   ¦       Web.config.install.xdt
+    ¦   ¦       Web.config.uninstall.xdt
+    ¦   ¦       
+    ¦   +---lib
+    ¦       +---net45
+    ¦           ¦   System.Web.Helpers.dll
+    ¦           ¦   System.Web.Helpers.xml
+    ¦           ¦   System.Web.WebPages.Deployment.dll
+    ¦           ¦   System.Web.WebPages.Deployment.xml
+    ¦           ¦   System.Web.WebPages.dll
+    ¦           ¦   System.Web.WebPages.Razor.dll
+    ¦           ¦   System.Web.WebPages.Razor.xml
+    ¦           ¦   System.Web.WebPages.xml
+    ¦           ¦   
+    ¦           +---es
+    ¦                   System.Web.Helpers.resources.dll
+    ¦                   system.web.helpers.xml
+    ¦                   System.Web.WebPages.Deployment.resources.dll
+    ¦                   system.web.webpages.deployment.xml
+    ¦                   System.Web.WebPages.Razor.resources.dll
+    ¦                   system.web.webpages.razor.xml
+    ¦                   System.Web.WebPages.resources.dll
+    ¦                   system.web.webpages.xml
+    ¦                   
+    +---Microsoft.AspNet.WebPages.es.3.2.9
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.AspNet.WebPages.es.3.2.9.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ESN.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net45
+    ¦           +---es
+    ¦                   System.Web.Helpers.resources.dll
+    ¦                   system.web.helpers.xml
+    ¦                   System.Web.WebPages.Deployment.resources.dll
+    ¦                   system.web.webpages.deployment.xml
+    ¦                   System.Web.WebPages.Razor.resources.dll
+    ¦                   system.web.webpages.razor.xml
+    ¦                   System.Web.WebPages.resources.dll
+    ¦                   system.web.webpages.xml
+    ¦                   
+    +---Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1.nupkg
+    ¦   ¦   
+    ¦   +---build
+    ¦   ¦   +---net45
+    ¦   ¦   ¦       Microsoft.CodeDom.Providers.DotNetCompilerPlatform.Extensions.props
+    ¦   ¦   ¦       Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props
+    ¦   ¦   ¦       
+    ¦   ¦   +---net46
+    ¦   ¦           Microsoft.CodeDom.Providers.DotNetCompilerPlatform.Extensions.props
+    ¦   ¦           Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props
+    ¦   ¦           
+    ¦   +---content
+    ¦   ¦   +---net45
+    ¦   ¦   ¦       app.config.install.xdt
+    ¦   ¦   ¦       app.config.uninstall.xdt
+    ¦   ¦   ¦       web.config.install.xdt
+    ¦   ¦   ¦       web.config.uninstall.xdt
+    ¦   ¦   ¦       
+    ¦   ¦   +---net46
+    ¦   ¦           app.config.install.xdt
+    ¦   ¦           app.config.uninstall.xdt
+    ¦   ¦           web.config.install.xdt
+    ¦   ¦           web.config.uninstall.xdt
+    ¦   ¦           
+    ¦   +---lib
+    ¦   ¦   +---net45
+    ¦   ¦           Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+    ¦   ¦           Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+    ¦   ¦           
+    ¦   +---tools
+    ¦       +---net45
+    ¦       ¦       install.ps1
+    ¦       ¦       uninstall.ps1
+    ¦       ¦       
+    ¦       +---Roslyn45
+    ¦       ¦       csc.exe
+    ¦       ¦       csc.exe.config
+    ¦       ¦       csc.rsp
+    ¦       ¦       csi.exe
+    ¦       ¦       csi.rsp
+    ¦       ¦       Microsoft.Build.Tasks.CodeAnalysis.dll
+    ¦       ¦       Microsoft.CodeAnalysis.CSharp.dll
+    ¦       ¦       Microsoft.CodeAnalysis.CSharp.Scripting.dll
+    ¦       ¦       Microsoft.CodeAnalysis.dll
+    ¦       ¦       Microsoft.CodeAnalysis.Scripting.dll
+    ¦       ¦       Microsoft.CodeAnalysis.VisualBasic.dll
+    ¦       ¦       Microsoft.CSharp.Core.targets
+    ¦       ¦       Microsoft.DiaSymReader.Native.amd64.dll
+    ¦       ¦       Microsoft.DiaSymReader.Native.x86.dll
+    ¦       ¦       Microsoft.VisualBasic.Core.targets
+    ¦       ¦       System.AppContext.dll
+    ¦       ¦       System.Collections.Immutable.dll
+    ¦       ¦       System.Diagnostics.StackTrace.dll
+    ¦       ¦       System.IO.FileSystem.dll
+    ¦       ¦       System.IO.FileSystem.Primitives.dll
+    ¦       ¦       System.Reflection.Metadata.dll
+    ¦       ¦       vbc.exe
+    ¦       ¦       vbc.exe.config
+    ¦       ¦       vbc.rsp
+    ¦       ¦       VBCSCompiler.exe
+    ¦       ¦       VBCSCompiler.exe.config
+    ¦       ¦       
+    ¦       +---RoslynLatest
+    ¦               csc.exe
+    ¦               csc.exe.config
+    ¦               csc.rsp
+    ¦               csi.exe
+    ¦               csi.exe.config
+    ¦               csi.rsp
+    ¦               Microsoft.Build.Tasks.CodeAnalysis.dll
+    ¦               Microsoft.CodeAnalysis.CSharp.dll
+    ¦               Microsoft.CodeAnalysis.CSharp.Scripting.dll
+    ¦               Microsoft.CodeAnalysis.dll
+    ¦               Microsoft.CodeAnalysis.Scripting.dll
+    ¦               Microsoft.CodeAnalysis.VisualBasic.dll
+    ¦               Microsoft.CSharp.Core.targets
+    ¦               Microsoft.DiaSymReader.Native.amd64.dll
+    ¦               Microsoft.DiaSymReader.Native.x86.dll
+    ¦               Microsoft.Managed.Core.targets
+    ¦               Microsoft.VisualBasic.Core.targets
+    ¦               Microsoft.Win32.Primitives.dll
+    ¦               System.AppContext.dll
+    ¦               System.Collections.Immutable.dll
+    ¦               System.Console.dll
+    ¦               System.Diagnostics.DiagnosticSource.dll
+    ¦               System.Diagnostics.FileVersionInfo.dll
+    ¦               System.Diagnostics.StackTrace.dll
+    ¦               System.Globalization.Calendars.dll
+    ¦               System.IO.Compression.dll
+    ¦               System.IO.Compression.ZipFile.dll
+    ¦               System.IO.FileSystem.dll
+    ¦               System.IO.FileSystem.Primitives.dll
+    ¦               System.Net.Http.dll
+    ¦               System.Net.Sockets.dll
+    ¦               System.Reflection.Metadata.dll
+    ¦               System.Runtime.InteropServices.RuntimeInformation.dll
+    ¦               System.Security.Cryptography.Algorithms.dll
+    ¦               System.Security.Cryptography.Encoding.dll
+    ¦               System.Security.Cryptography.Primitives.dll
+    ¦               System.Security.Cryptography.X509Certificates.dll
+    ¦               System.Text.Encoding.CodePages.dll
+    ¦               System.Threading.Tasks.Extensions.dll
+    ¦               System.ValueTuple.dll
+    ¦               System.Xml.ReaderWriter.dll
+    ¦               System.Xml.XmlDocument.dll
+    ¦               System.Xml.XPath.dll
+    ¦               System.Xml.XPath.XDocument.dll
+    ¦               vbc.exe
+    ¦               vbc.exe.config
+    ¦               vbc.rsp
+    ¦               VBCSCompiler.exe
+    ¦               VBCSCompiler.exe.config
+    ¦               
+    +---Microsoft.Web.Infrastructure.2.0.0
+    ¦   ¦   .signature.p7s
+    ¦   ¦   Microsoft.Web.Infrastructure.2.0.0.nupkg
+    ¦   ¦   NET.icon.png
+    ¦   ¦   NET_Library_EULA_ENU.txt
+    ¦   ¦   
+    ¦   +---lib
+    ¦       +---net40
+    ¦               Microsoft.Web.Infrastructure.dll
+    ¦               
+    +---Newtonsoft.Json.13.0.3
+        ¦   .signature.p7s
+        ¦   LICENSE.md
+        ¦   Newtonsoft.Json.13.0.3.nupkg
+        ¦   packageIcon.png
+        ¦   README.md
+        ¦   
+        +---lib
+            +---net20
+            ¦       Newtonsoft.Json.dll
+            ¦       Newtonsoft.Json.xml
+            ¦       
+            +---net35
+            ¦       Newtonsoft.Json.dll
+            ¦       Newtonsoft.Json.xml
+            ¦       
+            +---net40
+            ¦       Newtonsoft.Json.dll
+            ¦       Newtonsoft.Json.xml
+            ¦       
+            +---net45
+            ¦       Newtonsoft.Json.dll
+            ¦       Newtonsoft.Json.xml
+            ¦       
+            +---net6.0
+            ¦       Newtonsoft.Json.dll
+            ¦       Newtonsoft.Json.xml
+            ¦       
+            +---netstandard1.0
+            ¦       Newtonsoft.Json.dll
+            ¦       Newtonsoft.Json.xml
+            ¦       
+            +---netstandard1.3
+            ¦       Newtonsoft.Json.dll
+            ¦       Newtonsoft.Json.xml
+            ¦       
+            +---netstandard2.0
+                    Newtonsoft.Json.dll
+                    Newtonsoft.Json.xml
+                    

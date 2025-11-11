@@ -4,7 +4,12 @@
     ViewBag.Title = "MiBilletera";
 }
 
-<div class="container mt-5">
+@* NUEVO:
+    Añadimos un fondo gris claro (bg-light) a todo el contenedor
+    y un padding (p-4) y bordes redondeados (rounded) para un look de "app".
+*@
+<div class="container mt-3 bg-light p-4 rounded shadow-sm">
+
     <div class="d-flex justify-content-between align-items-center">
         <h2>Hola, @Model.NombreCompleto</h2>
         <span class="badge @(Model.EstadoKYC == "Verificado" ? "bg-success" : "bg-warning") p-2">
@@ -26,7 +31,11 @@
     @* Sección 1 *@
     <div class="row">
         <div class="col-md-6 mb-4">
-            <div class="card bg-primary text-white shadow-lg border-0" style="border-radius: 1rem;">
+            @* CAMBIO:
+                Cambiamos 'bg-primary' por 'bg-dark' para un estilo más sobrio y moderno
+                como el que pediste (gris oscuro).
+            *@
+            <div class="card bg-dark text-white shadow-lg border-0" style="border-radius: 1rem;">
                 <div class="card-body">
                     <h5 class="card-title opacity-75">Saldo Disponible</h5>
                     <h1 class="card-text fw-bold">$ @Model.SaldoActual.ToString("N2")</h1>
@@ -39,7 +48,11 @@
         </div>
 
         <div class="col-md-6 mb-4">
-            <div class="card shadow-sm h-100">
+            @* CAMBIO:
+                Cambiamos 'shadow-sm' por 'shadow' y 'bg-white'
+                para que resalte sobre el fondo gris (bg-light).
+            *@
+            <div class="card shadow bg-white h-100 border-0" style="border-radius: 1rem;">
                 <div class="card-body">
                     <h5 class="card-title border-bottom pb-2">Datos de tu Cuenta</h5>
 
@@ -56,7 +69,12 @@
 
                     <h5 class="card-title border-bottom pb-2 mt-4">Acciones</h5>
                     <div class="d-grid gap-2">
-                        <a href="@Url.Action("Crear", "Transferencia")" class="btn btn-outline-success">
+                        @* CAMBIO CRÍTICO:
+                            El enlace apuntaba a "Crear" en "Transferencia".
+                            Lo corregimos para que apunte a la Acción "Transferir"
+                            en el controlador "Billetera", que es la que creamos.
+                        *@
+                        <a href="@Url.Action("Transferir", "Billetera")" class="btn btn-outline-primary btn-lg">
                             Enviar Dinero 📤
                         </a>
                         <a href="@Url.Action("Listado", "Transacciones")" class="btn btn-outline-secondary">
@@ -71,13 +89,21 @@
     <div class="row mt-4">
         <div class="col-12">
             <h4>Métodos de Pago Vinculados</h4>
+            @if (!Model.MetodosPago.Any())
+            {
+                <div class="alert alert-info">No tienes métodos de pago vinculados.</div>
+            }
             @foreach (var metodo in Model.MetodosPago)
             {
-                <div class="alert alert-secondary d-flex justify-content-between align-items-center">
+                @* CAMBIO:
+                    Cambiamos 'alert-secondary' por 'bg-white shadow-sm'
+                    para que sea coherente con el nuevo estilo de tarjetas.
+                *@
+                <div class="bg-white shadow-sm p-3 rounded mb-2 d-flex justify-content-between align-items-center">
                     <span>
                         @if (metodo.TipoMetodo.Contains("Crédito"))
                         {
-                            <i class="fas fa-credit-card me-2"></i> // Ícono de Font Awesome (si está incluido)
+                            <i class="fas fa-credit-card me-2"></i> @*// Ícono de Font Awesome (si está incluido)*@
                         }
                         else
                         {
@@ -85,7 +111,7 @@
                         }
                         @metodo.TipoMetodo: **** **** **** @metodo.Ultimos4Digitos
                     </span>
-                    <small>@metodo.BancoEmisor</small>
+                    <small class="text-muted">@metodo.BancoEmisor</small>
                 </div>
             }
         </div>
@@ -96,10 +122,13 @@
         <div class="col-md-12">
             <h4>Estado de verificación KYC</h4>
 
-            <div class="card shadow-sm mb-4">
+            @* CAMBIO:
+                Cambiamos 'shadow-sm' por 'shadow' y 'bg-white'
+            *@
+            <div class="card shadow bg-white mb-4 border-0" style="border-radius: 1rem;">
                 <div class="card-body">
                     <p class="fw-bold">Estado actual:</p>
-                    <span class="badge @Model.EstadoKYC == " Verificado"? "bg-succes" : "bg-warning" ) p-2 mb-3">
+                    <span class="badge @(Model.EstadoKYC == "Verificado" ? "bg-success" : "bg-warning") p-2 mb-3">
                         @(Model.EstadoKYC == "Verificado" ? "✅ Cuenta Verificada" : "⚠️ Verificación Requerida")
                     </span>
 
@@ -133,7 +162,7 @@
                         <p class="text-success">¡Tu identidad ha sido confirmada. Ya puedes usar todas las funciones de la billetera!</p>
                     }
                 </div>
- 
+
             </div>
         </div>
     </div>

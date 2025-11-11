@@ -49,7 +49,7 @@ namespace MercadoPagoWEB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ActualizarEstadoKYC", id_usuarioParameter, nuevo_estadoParameter);
         }
     
-        public virtual int SP_RealizarTransferencia(Nullable<int> id_origen, Nullable<int> id_destino, Nullable<decimal> monto, string descripcion)
+        public virtual ObjectResult<Nullable<int>> SP_RealizarTransferencia(Nullable<int> id_origen, Nullable<int> id_destino, Nullable<decimal> monto, string descripcion)
         {
             var id_origenParameter = id_origen.HasValue ?
                 new ObjectParameter("id_origen", id_origen) :
@@ -67,7 +67,7 @@ namespace MercadoPagoWEB
                 new ObjectParameter("descripcion", descripcion) :
                 new ObjectParameter("descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_RealizarTransferencia", id_origenParameter, id_destinoParameter, montoParameter, descripcionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_RealizarTransferencia", id_origenParameter, id_destinoParameter, montoParameter, descripcionParameter);
         }
     }
 }

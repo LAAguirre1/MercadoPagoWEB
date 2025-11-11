@@ -148,6 +148,16 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +171,7 @@
     <Compile Include="CuentaDigital.cs">
       <DependentUpon>MercadoPagoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Excepcion\TransferenciaException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,11 +195,14 @@
     </Compile>
     <Compile Include="Models\ApiKeyRequest.cs" />
     <Compile Include="Models\BilleteraViewModel.cs" />
+    <Compile Include="Models\TransferenciaViewModel.cs" />
     <Compile Include="MovimientoCuenta.cs">
       <DependentUpon>MercadoPagoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ITransferenciaService.cs" />
     <Compile Include="Services\RenaperService.cs" />
+    <Compile Include="Services\TransferenciaService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
     <Compile Include="Transaccion.cs">
       <DependentUpon>MercadoPagoModel.tt</DependentUpon>
@@ -244,6 +258,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\Billetera\MiBilletera.cshtml" />
     <Content Include="Views\Billetera\ResultadoPrueba.cshtml" />
+    <Content Include="Views\Billetera\TransferirForm.cshtml" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
