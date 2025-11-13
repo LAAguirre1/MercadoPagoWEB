@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\IngresosController.cs" />
     <Compile Include="Controllers\Api\PagosController.cs" />
     <Compile Include="Controllers\BilleteraController.cs" />
     <Compile Include="Controllers\TransaccionController.cs" />
@@ -233,6 +234,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActividadViewModel.cs" />
     <Compile Include="Models\ApiKeyRequest.cs" />
+    <Compile Include="Models\Api\IngresoExternoRequest.cs" />
+    <Compile Include="Models\Api\IngresoExternoResponse.cs" />
     <Compile Include="Models\Api\PagoExternoRequest.cs" />
     <Compile Include="Models\Api\PagoExternoResponse.cs" />
     <Compile Include="Models\BilleteraViewModel.cs" />
