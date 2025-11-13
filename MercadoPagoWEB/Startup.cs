@@ -41,7 +41,17 @@ namespace MercadoPagoWEB
                 {
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: System.TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager)),
+
+                    OnApplyRedirect = context =>
+                    {
+                        // Verificamos si la solicitud es para una ruta de API
+                        if (!context.Request.Path.StartsWithSegments(new PathString("/api")))
+                        {
+                            // NO es una API. Es un usuario normal. Redirigir al Login.
+                            context.Response.Redirect(context.RedirectUri);
+                        }
+                    }
                 }
             });
         }

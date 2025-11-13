@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\PagosController.cs" />
     <Compile Include="Controllers\BilleteraController.cs" />
     <Compile Include="Controllers\TransaccionController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -202,6 +203,7 @@
       <DependentUpon>MercadoPagoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Excepcion\TransferenciaException.cs" />
+    <Compile Include="Filters\ApiKeyAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +233,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActividadViewModel.cs" />
     <Compile Include="Models\ApiKeyRequest.cs" />
+    <Compile Include="Models\Api\PagoExternoRequest.cs" />
+    <Compile Include="Models\Api\PagoExternoResponse.cs" />
     <Compile Include="Models\BilleteraViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IngresarDineroViewModel.cs" />
