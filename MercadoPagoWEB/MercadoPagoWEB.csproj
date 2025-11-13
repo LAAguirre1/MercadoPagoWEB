@@ -233,6 +233,7 @@
     <Compile Include="Models\ApiKeyRequest.cs" />
     <Compile Include="Models\BilleteraViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IngresarDineroViewModel.cs" />
     <Compile Include="Models\TransferenciaViewModel.cs" />
     <Compile Include="MovimientoCuenta.cs">
       <DependentUpon>MercadoPagoModel.tt</DependentUpon>
@@ -306,6 +307,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutLimpio.cshtml" />
+    <Content Include="Views\Billetera\IngresarDinero.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

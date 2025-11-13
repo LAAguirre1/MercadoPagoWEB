@@ -35,7 +35,7 @@
             @* 3. El colapsable ahora usa id="navbarNav" *@
         <div class="collapse navbar-collapse" id="navbarNav">
             @* AÑADIDO: "ms-auto" (margin-start: auto) para alinear los enlaces a la derecha *@
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav me-auto">
                 @* AÑADIDO: Lógica para marcar el enlace activo (opcional pero recomendado).
             Esto requiere que definas ViewBag.ActiveLink en tus controladores.
             Ej: ViewBag.ActiveLink = "Billetera";
@@ -44,10 +44,7 @@
                     @Html.ActionLink("Mi Billetera", "Index", "Billetera", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Transacciones", "Index", "Transaccion", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Usuarios (Admin)", "Index", "Usuario", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Transacciones", "Listado", "Transaccion", null, new { @class = "nav-link" })
                 </li>
             </ul>
             @Html.Partial("_LoginPartial")

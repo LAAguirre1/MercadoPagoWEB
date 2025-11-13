@@ -1,14 +1,15 @@
-﻿using MercadoPagoWEB.Models;
+﻿using MercadoPagoWEB.Excepcion;
+using MercadoPagoWEB.Models;
+using MercadoPagoWEB.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Threading.Tasks;
-using MercadoPagoWEB.Services;
-using MercadoPagoWEB.Excepcion;
-using Microsoft.AspNet.Identity;
-using System.Data.Entity;
 
 namespace MercadoPagoWEB.Controllers
 {
@@ -171,6 +172,80 @@ namespace MercadoPagoWEB.Controllers
                 return View("TransferirForm", model);
             }
         }
+
+        // GET: /Billetera/IngresarDinero
+        /// <summary>
+        /// Muestra el formulario para simular un ingreso de dinero.
+        /// </summary>
+        public ActionResult IngresarDinero()
+        {
+            return View(new IngresarDineroViewModel());
+        }
+
+        //
+        // POST: /Billetera/IngresarDinero
+        /// <summary>
+        /// Procesa la simulación de ingreso de dinero.
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> IngresarDinero(IngresarDineroViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                // 1. Obtener el ID del usuario logueado
+                int usuarioIDLogueado = ObtenerUsuarioIdActual();
+
+                // 2. Obtener la CuentaDigital (destino) de ese usuario
+                var cuentaDestino = await db.CuentaDigital.FirstOrDefaultAsync(c => c.id_usuario == usuarioIDLogueado);
+                if (cuentaDestino == null)
+                {
+                    ModelState.AddModelError("", "No se pudo encontrar tu cuenta digital. Contacta a soporte.");
+                    return View(model);
+                }
+
+                // 3. Preparar parámetros para el SP (¡Recuerda que usa RAISERROR!)
+                var pIdCuentaDestino = new SqlParameter("@id_cuenta_destino", cuentaDestino.id_cuenta);
+                var pMonto = new SqlParameter("@monto", model.Monto);
+                var pDescripcion = new SqlParameter("@descripcion", $"Ingreso simulado con {model.MetodoPagoSimulado}");
+
+                // 4. Ejecutar el SP
+                await db.Database.ExecuteSqlCommandAsync(
+                    "EXEC SP_RealizarIngreso @id_cuenta_destino, @monto, @descripcion",
+                    pIdCuentaDestino, pMonto, pDescripcion
+                );
+
+                // 5. Si todo salió bien, redirigir a la billetera
+                TempData["Mensaje"] = $"¡Ingresaste ${model.Monto.ToString("N2")} a tu cuenta!";
+                return RedirectToAction("Index");
+            }
+            catch (SqlException ex)
+            {
+                // Capturamos los errores lanzados por RAISERROR
+                if (ex.Number >= 50000)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Error inesperado en la base de datos.");
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                // Capturamos cualquier otro error
+                ModelState.AddModelError("", $"Ocurrió un error: {ex.Message}");
+                return View(model);
+            }
+        }
+
+
 
         /// <summary>
         /// Obtiene el ID (int) de nuestra tabla 'Usuario' usando el ID (string) de Identity.
